@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar actividad | Mi Agenda</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <header class="hero hero-pequeno">
+        <div class="hero-icon"></div>
+        <h1>Editar actividad</h1>
+        <p class="subtitulo">¡Puedes mejorar tus planes cuando quieras!</p>
+    </header>
+
+    <main class="contenedor contenedor-editar">
+        <section class="tarjeta">
+            <h2> Actualiza tus datos</h2>
+
+            {% with mensajes = get_flashed_messages(with_categories=true) %}
+                {% for categoria, mensaje in mensajes %}
+                    <div class="mensaje {{ categoria }}">{{ mensaje }}</div>
+                {% endfor %}
+            {% endwith %}
+
+            <form method="POST">
+                <label for="titulo">Título *</label>
+                <input type="text" id="titulo" name="titulo"
+                       value="{{ actividad['titulo'] }}"
+                       maxlength="120" required>
+
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" name="descripcion"
+                          rows="4" maxlength="1000">{{ actividad['descripcion'] or '' }}</textarea>
+
+                <label for="fecha">Fecha *</label>
+                <input type="date" id="fecha" name="fecha"
+                       value="{{ actividad['fecha'] }}" required>
+
+                <button class="boton boton-principal" type="submit">
+                    Guardar cambios
+                </button>
+
+                <a class="boton boton-volver"
+                   href="{{ url_for('inicio') }}">
+                    ← Volver a la agenda
+                </a>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

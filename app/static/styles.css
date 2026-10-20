@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --rosa: #e84d96;
+    --rosa-oscuro: #bd3478;
+    --morado: #8063d8;
+    --azul: #5187e8;
+    --texto: #40344f;
+    --suave: #83758f;
+    --blanco: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', Arial, sans-serif;
+    color: var(--texto);
+    background: linear-gradient(
+        135deg,
+        #ffe4f0 0%,
+        #f0e5ff 48%,
+        #e3f1ff 100%
+    );
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 42px 20px 48px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(120deg, #6855ce, #e84d96, #fa9aaf);
+    border-radius: 0 0 38px 38px;
+    box-shadow: 0 10px 35px rgba(116, 76, 170, 0.2);
+}
+
+.hero::before,
+.hero::after {
+    content: "✦";
+    position: absolute;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 75px;
+}
+
+.hero::before {
+    top: 5px;
+    left: 7%;
+}
+
+.hero::after {
+    right: 8%;
+    bottom: 0;
+}
+
+.hero-icon {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.etiqueta {
+    display: inline-block;
+    padding: 6px 15px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.hero h1 {
+    margin: 10px 0;
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.subtitulo {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.93);
+    font-size: 14px;
+}
+
+.contenedor {
+    width: min(1100px, 92%);
+    margin: 30px auto;
+}
+
+.tarjeta {
+    margin-bottom: 25px;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 12px 35px rgba(94, 68, 127, 0.09);
+}
+
+.tarjeta h2 {
+    margin: 0 0 5px;
+    color: #7952b8;
+    font-size: 23px;
+}
+
+.ayuda {
+    margin: 4px 0 20px;
+    color: var(--suave);
+    font-size: 13px;
+}
+
+label {
+    display: block;
+    margin: 16px 0 7px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+input,
+textarea {
+    display: block;
+    width: 100%;
+    padding: 13px 14px;
+    color: var(--texto);
+    font: inherit;
+    font-size: 14px;
+    border: 1px solid #eadced;
+    border-radius: 11px;
+    background: #fffaff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--rosa);
+    box-shadow: 0 0 0 3px rgba(232, 77, 150, 0.12);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 13px;
+    border: none;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.boton:hover {
+    filter: brightness(0.96);
+    transform: translateY(-2px);
+}
+
+.boton-principal {
+    width: 100%;
+    margin-top: 22px;
+    padding: 14px;
+    color: white;
+    font-size: 15px;
+    background: linear-gradient(100deg, #d94a9b, #8860d9);
+    box-shadow: 0 6px 16px rgba(185, 70, 156, 0.22);
+}
+
+.encabezado-tabla {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.contador {
+    padding: 8px 12px;
+    color: #7654bc;
+    background: #f0e9ff;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+thead {
+    color: white;
+    background: linear-gradient(100deg, #7558ce, #d653a2);
+}
+
+th {
+    padding: 14px 12px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #f0e8f4;
+    vertical-align: middle;
+}
+
+tbody tr:hover {
+    background: #fff8fd;
+}
+
+.descripcion {
+    max-width: 260px;
+    margin: 4px 0 0;
+    color: var(--suave);
+    font-size: 11px;
+    overflow-wrap: anywhere;
+}
+
+.estado {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.pendiente {
+    color: #a36a0a;
+    background: #fff1cc;
+}
+
+.completada {
+    color: #18865b;
+    background: #d9f8e8;
+}
+
+.tachado {
+    color: #91879b;
+    text-decoration: line-through;
+}
+
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.acciones form {
+    margin: 0;
+}
+
+.boton-editar {
+    color: white;
+    background: #6588ec;
+}
+
+.boton-listo {
+    color: white;
+    background: #35ae83;
+}
+
+.boton-eliminar {
+    color: white;
+    background: #e9687c;
+}
+
+.boton-volver {
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px;
+    color: #7952b8;
+    background: #f0e9ff;
+}
+
+.mensaje {
+    margin-bottom: 18px;
+    padding: 13px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.success {
+    color: #176c4c;
+    background: #d9f8e8;
+}
+
+.error {
+    color: #a52b4a;
+    background: #ffe0e9;
+}
+
+.vacio {
+    padding: 35px 15px;
+    text-align: center;
+    border: 2px dashed #ead8f2;
+    border-radius: 15px;
+    background: #fffaff;
+}
+
+.vacio div {
+    font-size: 42px;
+}
+
+.vacio h3 {
+    color: #7952b8;
+}
+
+.vacio p {
+    color: var(--suave);
+    font-size: 13px;
+}
+
+.hero-pequeno {
+    padding: 32px 20px;
+}
+
+.contenedor-editar {
+    max-width: 650px;
+}
+
+footer {
+    padding: 12px 10px 30px;
+    color: #796987;
+    text-align: center;
+    font-size: 12px;
+}
+
+@media (max-width: 650px) {
+    .contenedor {
+        width: 94%;
+        margin-top: 20px;
+    }
+
+    .tarjeta {
+        padding: 18px;
+        border-radius: 17px;
+    }
+
+    .encabezado-tabla {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    table {
+        min-width: 620px;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Agenda de Actividades</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <header class="hero">
+        <div class="hero-icon"></div>
+        <p class="etiqueta">ORGANIZA · PLANEA · LOGRA</p>
+        <h1>Mi Agenda de Actividades</h1>
+        <p class="subtitulo">
+            Cada pequeño paso te acerca a una gran meta.
+        </p>
+    </header>
+
+    <main class="contenedor">
+        {% with mensajes = get_flashed_messages(with_categories=true) %}
+            {% for categoria, mensaje in mensajes %}
+                <div class="mensaje {{ categoria }}">{{ mensaje }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <section class="tarjeta">
+            <h2> Nueva actividad</h2>
+            <p class="ayuda">Organiza tus tareas escolares y proyectos.</p>
+
+            <form action="{{ url_for('agregar') }}" method="POST">
+                <label for="titulo">Título de la actividad *</label>
+                <input type="text" id="titulo" name="titulo"
+                       placeholder="Ej. Terminar mi proyecto"
+                       maxlength="120" required>
+
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" name="descripcion"
+                          placeholder="Escribe los detalles..."
+                          rows="3" maxlength="1000"></textarea>
+
+                <label for="fecha">Fecha de entrega *</label>
+                <input type="date" id="fecha" name="fecha" required>
+
+                <button class="boton boton-principal" type="submit">
+                    ＋ Guardar actividad
+                </button>
+            </form>
+        </section>
+
+        <section class="tarjeta">
+            <div class="encabezado-tabla">
+                <div>
+                    <h2>Mis actividades</h2>
+                    <p class="ayuda">Aquí encontrarás todas tus tareas.</p>
+                </div>
+                <span class="contador">{{ actividades|length }} actividades</span>
+            </div>
+
+            {% if actividades %}
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for actividad in actividades %}
+                        <tr>
+                            <td>
+                                <strong class="{% if actividad['completada'] %}tachado{% endif %}">
+                                    {{ actividad['titulo'] }}
+                                </strong>
+                                {% if actividad['descripcion'] %}
+                                    <p class="descripcion">
+                                        {{ actividad['descripcion'] }}
+                                    </p>
+                                {% endif %}
+                            </td>
+                            <td>{{ actividad['fecha'] }}</td>
+                            <td>
+                                {% if actividad['completada'] %}
+                                    <span class="estado completada">Completada</span>
+                                {% else %}
+                                    <span class="estado pendiente">Pendiente</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="acciones">
+                                    <a class="boton boton-editar"
+                                       href="{{ url_for('editar', id=actividad['id']) }}">
+                                        Editar
+                                    </a>
+
+                                    <form action="{{ url_for('completar', id=actividad['id']) }}"
+                                          method="POST">
+                                        <button class="boton boton-listo" type="submit">
+                                            {% if actividad['completada'] %}
+                                                Reabrir
+                                            {% else %}
+                                                ✓ Listo
+                                            {% endif %}
+                                        </button>
+                                    </form>
+
+                                    <form action="{{ url_for('eliminar', id=actividad['id']) }}"
+                                          method="POST"
+                                          onsubmit="return confirm('¿Quieres eliminar esta actividad?');">
+                                        <button class="boton boton-eliminar" type="submit">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <div class="vacio">
+                    <div></div>
+                    <h3>¡Tu agenda está lista!</h3>
+                    <p>Agrega tu primera actividad usando el formulario.</p>
+                </div>
+            {% endif %}
+        </section>
+
+        <footer>
+            Hecho con 💗 para organizar tus grandes ideas.
+        </footer>
+    </main>
+</body>
+</html>
